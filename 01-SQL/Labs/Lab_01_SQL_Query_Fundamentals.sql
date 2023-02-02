@@ -106,7 +106,17 @@ WHERE reorder_level < target_level;
 -- ------------------------------------------------------------------
 -- 11). Products with Supplier Company & Address Info
 -- ------------------------------------------------------------------
-
+SELECT p.product_ane
+	, p.list_price AS product_list_price
+	, p.category AS product_category
+	, s.company AS supplier_company
+	, s.address AS supplier_address
+	, s.city AS supplier_city
+	, s.state_province AS supplier_state_province
+	, s.zip_postal_codeAS supplier_ZC
+FROM northwind.suppliers s
+INNER JOIN northwind.products p
+ON s.id = p.supplier_ids;
 
 
 -- ------------------------------------------------------------------
