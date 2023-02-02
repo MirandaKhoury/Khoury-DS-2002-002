@@ -72,13 +72,23 @@ LIMIT 10;
 -- ------------------------------------------------------------------ 
 -- 9). Count of Current and Discontinued Products 
 -- ------------------------------------------------------------------
-SELECT COUNT(`id`) AS "Number Current Products"
-FROM northwind.products
-WHERE discontinued = 0;
+UPDATE northwind.products SET discontinued = 1 WHERE id = 95;
 
-SELECT COUNT(`id`) AS "Number Discontinued Products"
+# SELECT COUNT(`id`) AS "Number Current Products"
+# FROM northwind.products
+# WHERE discontinued = 0;
+
+# SELECT COUNT(`id`) AS "Number Discontinued Products"
+# FROM northwind.products
+# WHERE discontinued = 1;
+
+SELECT CASE discontinued
+	WHEN 1 THEN 'yes'
+	ELSE 'no'
+END AS is_discontinued
+, COUNT(*) as product_count
 FROM northwind.products
-WHERE discontinued = 1;
+GROUP BY discontinued;
 -- ------------------------------------------------------------------
 -- 10). Product Name, Units on Order and Units in Stock
 --      Where Quantity In-Stock is Less Than the Quantity On-Order. 
