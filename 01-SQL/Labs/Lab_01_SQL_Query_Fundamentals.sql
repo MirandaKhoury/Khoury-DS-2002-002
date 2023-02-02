@@ -106,7 +106,7 @@ WHERE reorder_level < target_level;
 -- ------------------------------------------------------------------
 -- 11). Products with Supplier Company & Address Info
 -- ------------------------------------------------------------------
-SELECT p.product_ane
+SELECT p.product_name
 	, p.list_price AS product_list_price
 	, p.category AS product_category
 	, s.company AS supplier_company
