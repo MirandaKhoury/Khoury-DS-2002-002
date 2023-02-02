@@ -117,14 +117,19 @@ SELECT p.product_name
 FROM northwind.suppliers s
 INNER JOIN northwind.products p
 ON s.id = p.supplier_ids;
-
-
 -- ------------------------------------------------------------------
 -- 12). Number of Products per Category With Less Than 5 Units
 -- ------------------------------------------------------------------
-
-
-
+SELECT category
+	, COUNT(*) as units_in_stock
+FROM northwind.products
+GROUP BY category
+HAVING units_in_stock < 5;
 -- ------------------------------------------------------------------
 -- 13). Number of Products per Category Priced Less Than $20.00
 -- ------------------------------------------------------------------
+SELECT category
+	, COUNT(*) As product_count
+FROM northwind.products
+GROUP BY category
+HAVING 
