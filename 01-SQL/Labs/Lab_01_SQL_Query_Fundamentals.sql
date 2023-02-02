@@ -93,8 +93,11 @@ GROUP BY discontinued;
 -- 10). Product Name, Units on Order and Units in Stock
 --      Where Quantity In-Stock is Less Than the Quantity On-Order. 
 -- ------------------------------------------------------------------
-
-
+SELECT product_name
+	, reorder_level AS units_in_stock
+	, target_level AS units_on_order
+FROM northwind.products
+WHERE reorder_level < target_level;
 -- ------------------------------------------------------------------
 -- EXTRA CREDIT -----------------------------------------------------
 -- ------------------------------------------------------------------
