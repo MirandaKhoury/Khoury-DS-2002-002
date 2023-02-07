@@ -163,6 +163,16 @@ TODO: Write a SELECT Statement that:
 --------------------------------------------------------------------------------------------------
 */
 
+SELECT ...
+    ...
+    ods.status_name AS order_details_status
+FROM northwind.orders As a
+INNER JOIN northwind.orders_status AS os
+ON o.status_id = os.id
+RIGHT OUTER JOIN northwind.order_details as od
+ON o.id = od. order_id
+INNER JOIN northwind.order_details_status AS ods
+ON od.status_id = ods.id;
 -- ----------------------------------------------
 -- Validate that the Data was Inserted ----------
 -- ----------------------------------------------
