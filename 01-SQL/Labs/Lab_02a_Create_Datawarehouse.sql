@@ -112,9 +112,12 @@ CREATE TABLE `dim_suppliers` (
 # DROP TABLE `fact_orders`;
 
 CREATE TABLE `fact_orders` (
-  `order_key` int NOT NULL AUTO_INCREMENT,
-  `employee_id` int DEFAULT NULL,
-  `customer_id` int DEFAULT NULL,
+  `fact_order_key` int NOT NULL AUTO_INCREMENT,
+  `order key` int DEFAULT NULL,
+  `employee_key` int DEFAULT NULL,
+  `customer_key` int DEFAULT NULL,
+  `shipper_key` int DEFAULT NULL,
+  
   `order_date` datetime DEFAULT NULL,
   `shipped_date` datetime DEFAULT NULL,
   `shipping_fee` decimal(19,4) DEFAULT '0.0000',
@@ -130,7 +133,7 @@ CREATE TABLE `fact_orders` (
   `discount` double NOT NULL DEFAULT '0',
   `order_details_status` int DEFAULT NULL,
   `date_allocated` datetime DEFAULT NULL,
-  PRIMARY KEY (`order_key`),
+  PRIMARY KEY (`fact_order_key`),
  
   CONSTRAINT `fk_orders_customers` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`),
   CONSTRAINT `fk_orders_employees1` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`),
