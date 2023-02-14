@@ -96,7 +96,18 @@ INSERT INTO `northwind_dw`.`dim_products`
 `minimum_reorder_quantity`,
 `category`)
 # TODO: Write a SELECT Statement to Populate the table;
-
+SELECT `id`
+    , `code`
+    , `product_name`
+    , `standard_cost`
+    , `list_price`
+    , `reorder_level`
+    , `target_level`
+    , `quantity_per_unit`
+    , `discontinued`
+    , `minimum_reorder_quantity`
+    , `category`
+FROM `northwind`.`products`;
 -- ----------------------------------------------
 -- Validate that the Data was Inserted ----------
 -- ----------------------------------------------
@@ -115,6 +126,14 @@ INSERT INTO `northwind_dw`.`dim_shippers`
 `zip_postal_code`,
 `country_region`)
 # TODO: Write a SELECT Statement to Populate the table;
+SELECT `id`
+    , `company`
+    , `address`
+    , `city`
+    , `state_province`
+    , `zip_postal_code`
+    , `country_region`
+FROM `northwind`.`shippers`;
 
 -- ----------------------------------------------
 -- Validate that the Data was Inserted ----------
@@ -163,7 +182,8 @@ TODO: Write a SELECT Statement that:
 --------------------------------------------------------------------------------------------------
 */
 
-SELECT ...
+SELECT a.id
+    , 
     ...
     ods.status_name AS order_details_status
 FROM northwind.orders As a
