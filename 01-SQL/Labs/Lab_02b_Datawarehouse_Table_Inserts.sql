@@ -1,7 +1,7 @@
 -- --------------------------------------------------------------------------------------------------------------
 -- TODO: Extract the appropriate data from the northwind database, and INSERT it into the Northwind_DW database.
 -- --------------------------------------------------------------------------------------------------------------
-USE northwind_dw;
+
 -- ----------------------------------------------
 -- Populate dim_customers
 -- ----------------------------------------------
@@ -97,7 +97,7 @@ INSERT INTO `northwind_dw`.`dim_products`
 `category`)
 # TODO: Write a SELECT Statement to Populate the table;
 SELECT `id`
-    , `code`
+	, `product_code`
     , `product_name`
     , `standard_cost`
     , `list_price`
@@ -107,11 +107,11 @@ SELECT `id`
     , `discontinued`
     , `minimum_reorder_quantity`
     , `category`
-FROM `northwind`.`products`;
+FROM `northwind`.`products` 
 -- ----------------------------------------------
 -- Validate that the Data was Inserted ----------
 -- ----------------------------------------------
-SELECT * FROM northwind_dw.dim_products;
+#SELECT * FROM northwind_dw.dim_products;
 
 
 -- ----------------------------------------------
@@ -127,14 +127,13 @@ INSERT INTO `northwind_dw`.`dim_shippers`
 `country_region`)
 # TODO: Write a SELECT Statement to Populate the table;
 SELECT `id`
-    , `company`
-    , `address`
-    , `city`
-    , `state_province`
-    , `zip_postal_code`
-    , `country_region`
+	, `company`
+	, `address`
+	, `city`
+	, `state_province`
+	, `zip_postal_code`
+	, `country_region`
 FROM `northwind`.`shippers`;
-
 -- ----------------------------------------------
 -- Validate that the Data was Inserted ----------
 -- ----------------------------------------------
@@ -181,16 +180,34 @@ TODO: Write a SELECT Statement that:
 - columns you're required to extract from each of the four tables. Pay close attention!
 --------------------------------------------------------------------------------------------------
 */
-
 SELECT a.id
-    , 
-    ...
-    ods.status_name AS order_details_status
+    , a.employee_id
+    , a.customer_id
+    , od.product_id
+    , a.shipper_id
+    , a.ship_name
+    , a.ship_address
+    , a.ship_city
+    , a.ship_state_province
+    , a.ship_zip_postal_code
+    , a.ship_country_region
+    , od.quantity
+    , a.order_date
+    , a.shipped_date
+    , od.unit_price
+    , od.discount
+    , a.shipping_fee
+    , a.taxes
+    , a.payment_type
+    , a.paid_date
+    , a.tax_rate
+    , os.status_name
+    , ods.status_name 
 FROM northwind.orders As a
 INNER JOIN northwind.orders_status AS os
-ON o.status_id = os.id
+ON a.status_id = os.id
 RIGHT OUTER JOIN northwind.order_details as od
-ON o.id = od. order_id
+ON a.id = od.order_id
 INNER JOIN northwind.order_details_status AS ods
 ON od.status_id = ods.id;
 -- ----------------------------------------------
