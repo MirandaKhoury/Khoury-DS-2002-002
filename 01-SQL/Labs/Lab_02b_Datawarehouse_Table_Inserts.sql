@@ -107,7 +107,7 @@ SELECT `id`
     , `discontinued`
     , `minimum_reorder_quantity`
     , `category`
-FROM `northwind`.`products` 
+FROM `northwind`.`products`; 
 -- ----------------------------------------------
 -- Validate that the Data was Inserted ----------
 -- ----------------------------------------------
