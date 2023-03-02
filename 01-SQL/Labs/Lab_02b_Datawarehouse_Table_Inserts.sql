@@ -1,7 +1,7 @@
 -- --------------------------------------------------------------------------------------------------------------
 -- TODO: Extract the appropriate data from the northwind database, and INSERT it into the Northwind_DW database.
 -- --------------------------------------------------------------------------------------------------------------
-
+USE northwind_dw;
 -- ----------------------------------------------
 -- Populate dim_customers
 -- ----------------------------------------------
@@ -201,8 +201,8 @@ SELECT a.id
     , a.payment_type
     , a.paid_date
     , a.tax_rate
-    , os.status_name
-    , ods.status_name 
+    , os.status_name AS order_status
+    , ods.status_name AS order_details_status
 FROM northwind.orders As a
 INNER JOIN northwind.orders_status AS os
 ON a.status_id = os.id
