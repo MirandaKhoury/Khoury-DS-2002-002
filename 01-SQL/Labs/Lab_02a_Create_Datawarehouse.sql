@@ -111,17 +111,18 @@ CREATE TABLE `dim_suppliers` (
 #DROP TABLE `fact_orders`;
 
 CREATE TABLE `fact_orders` (
-  `order_key` int DEFAULT '0',
+  `fact_order_key` int NOT NULL AUTO_INCREMENT,
+  `order_key` int DEFAULT NULL,
   `employee_key` int DEFAULT NULL,
   `customer_key` int DEFAULT NULL,
   `product_key` int DEFAULT NULL,
   `shipper_key` int DEFAULT NULL,
-  `ship_name` varchar(50) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `ship_address` longtext CHARACTER SET utf8mb4,
-  `ship_city` varchar(50) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `ship_state_province` varchar(50) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `ship_zip_postal_code` varchar(50) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `ship_country_region` varchar(50) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `ship_name` varchar(50) DEFAULT NULL,
+  `ship_address` longtext DEFAULT NULL,
+  `ship_city` varchar(50) DEFAULT NULL,
+  `ship_state_province` varchar(50) DEFAULT NULL,
+  `ship_zip_postal_code` varchar(50) DEFAULT NULL,
+  `ship_country_region` varchar(50) DEFAULT NULL,
   `quantity` decimal(18,4) NOT NULL DEFAULT '0.0000',
   `order_date` datetime DEFAULT NULL,
   `shipped_date` datetime DEFAULT NULL,
@@ -129,9 +130,15 @@ CREATE TABLE `fact_orders` (
   `discount` double NOT NULL DEFAULT '0',
   `shipping_fee` decimal(19,4) DEFAULT '0.0000',
   `taxes` decimal(19,4) DEFAULT '0.0000',
-  `payment_type` varchar(50) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `payment_type` varchar(50) DEFAULT NULL,
   `paid_date` datetime DEFAULT NULL,
   `tax_rate` double DEFAULT '0',
-  `order_status` varchar(50) CHARACTER SET utf8mb4,
-  `order_details_status` varchar(50) CHARACTER SET utf8mb4 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `order_status` varchar(50) NOT NULL,
+  `order_details_status` varchar(50) NOT NULL
+  PRIMARY KEY (`fact_order_key`),
+  KEY `order_key` (`order_key`),
+	KEY `customer_key` (`customer_key`),
+	KEY `employee_key` (`employee_key`),
+  KEY `product_key` (`product_key`),
+  KEY `shipper_key` (`shipper_key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
